@@ -50,6 +50,7 @@ def run_io_through_nupic(input_data, model, metric_name, plot):
     # skip header rows
     csv_reader.next()
     csv_reader.next()
+    csv_reader.next()
 
     shifter = InferenceShifter
     if plot:
@@ -62,7 +63,7 @@ def run_io_through_nupic(input_data, model, metric_name, plot):
         counter += 1
         if (counter % 100 == 0):
             print "Read %i lines..." % counter
-        timestamp = dt = datetime.fromtimestamp(int(row[1]) // 1000000000)
+        timestamp = datetime.strptime(row[1], DATE_FORMAT)
         value = float(row[0])
         result = model.run({
             "timestamp": timestamp,
@@ -71,6 +72,8 @@ def run_io_through_nupic(input_data, model, metric_name, plot):
 
         if plot:
             result = shifter.shift(result)
+
+        print "Line %d" % counter
 
         prediction = result.inferences["multiStepBestPredictions"][1]
         anomaly_score = result.inferences["anomalyScore"]

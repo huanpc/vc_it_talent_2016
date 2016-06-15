@@ -1,6 +1,6 @@
 import json
 import csv
-
+from datetime import datetime
 
 def convert_json_to_csv(json_path, csv_path='test.csv'):
     # open input json file
@@ -26,11 +26,15 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
             csvwriter.writerow(header)
             count += 1
         elif count == 1:
-            value_type = ['float', 'seconds']
+            value_type = ['float', 'datetime']
+            tmp = ['T',]
             csvwriter.writerow(value_type)
+            csvwriter.writerow(tmp)
             count += 2
         else:
-            csvwriter.writerow(dp)
+            tmp = [dp[0], datetime.fromtimestamp(int(dp[1])).strftime('%Y-%m-%d %H:%M:%S')]
+            csvwriter.writerow(tmp)
+            del tmp
 
     print "Convert {} to {}" .format(json_path, csv_path)
 
