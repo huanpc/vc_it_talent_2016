@@ -8,7 +8,6 @@ from nupic.frameworks.opf.modelfactory import ModelFactory
 
 import nupic_anomaly_output
 
-from convert import convert_json_to_csv
 
 DESCRIPTION = (
     "Starts a NuPIC model from the model params returned by the swarm\n"
@@ -95,7 +94,5 @@ if __name__ == "__main__":
     args = sys.argv[1:]
     if "--plot" in args:
         plot = True
-
-    convert_json_to_csv('test.json')
-
+        
     run_model(METRIC_NAME, plot=plot)
