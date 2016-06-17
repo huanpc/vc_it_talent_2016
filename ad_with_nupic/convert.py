@@ -28,7 +28,7 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
             count += 1
         elif count == 1:
             value_type = ['float', 'datetime']
-            tmp = ['T', ]
+            tmp = ['', 'T']
             csvwriter.writerow(value_type)
             csvwriter.writerow(tmp)
             count += 2
