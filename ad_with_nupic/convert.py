@@ -34,7 +34,6 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
             count += 2
         else:
             if dp[0] is None:
-                print type(dp[0])
                 continue
             else:
                 tmp = [dp[0], datetime.fromtimestamp(
