@@ -6,7 +6,7 @@ import logging
 logging.basicConfig()
 
 from nupic.swarming import permutations_runner
-from swarm_description import SWARM_DESCRIPTION
+import swarm_description
 from convert import convert_json_to_csv
 
 INPUT_FILE = "test.csv"
@@ -67,9 +67,10 @@ def swarm(file_path):
     name = os.path.splitext(os.path.basename(file_path))[0]
     print "================================================="
     print "= Swarming on %s data..." % name
-    print_swarm_size_warning(SWARM_DESCRIPTION["swarmSize"])
+    print_swarm_size_warning(swarm_description.SWARM_DESCRIPTION["swarmSize"])
     print "================================================="
-    model_params = swarm_for_best_model_params(SWARM_DESCRIPTION, name)
+    model_params = swarm_for_best_model_params(
+        swarm_description.SWARM_DESCRIPTION, name)
     print "\nWrote the following model param files:"
     print "\t%s" % model_params
 

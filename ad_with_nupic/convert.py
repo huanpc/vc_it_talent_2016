@@ -2,6 +2,9 @@ import json
 import csv
 from datetime import datetime
 
+import swarm_description
+from swarm_description import set_swarm_description
+
 MAX = 0.0
 MIN = 0.0
 
@@ -51,6 +54,8 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
 
     print "Convert {} to {}. Max Value = {} and Min Value = {}" \
         . format(json_path, csv_path, MAX, MIN)
+
+    set_swarm_description(csv_path, MAX, MIN)
 
     result.close()
 

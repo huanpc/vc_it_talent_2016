@@ -1,39 +1,42 @@
-import convert
+SWARM_DESCRIPTION = None
 
-SWARM_DESCRIPTION = {
-    "includedFields": [
-        {
-            "fieldName": "timestamp",
-            "fieldType": "datetime"
-        },
-        {
-            "fieldName": "value",
-            "fieldType": "float",
-            "maxValue": convert.MAX,
-            "minValue": convert.MIN
-        }
-    ],
-    "streamDef": {
-        "info": "value",
-        "version": 1,
-        "streams": [
+
+def set_swarm_description(input_path, max_value, min_value):
+    global SWARM_DESCRIPTION
+    SWARM_DESCRIPTION = {
+        "includedFields": [
             {
-                "info": "Metric Value",
-                "source": "file://test.csv",
-                "columns": [
-                    "*"
-                ]
+                "fieldName": "timestamp",
+                "fieldType": "datetime"
+            },
+            {
+                "fieldName": "value",
+                "fieldType": "float",
+                "maxValue": max_value,
+                "minValue": min_value
             }
-        ]
-    },
-
-    "inferenceType": "TemporalAnomaly",
-    "inferenceArgs": {
-        "predictionSteps": [
-            1
         ],
-        "predictedField": "value"
-    },
-    "iterationCount": -1,
-    "swarmSize": "medium"
-}
+        "streamDef": {
+            "info": "value",
+            "version": 1,
+            "streams": [
+                {
+                    "info": "Metric Value",
+                    "source": "file://" + input_path,
+                    "columns": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+
+        "inferenceType": "TemporalAnomaly",
+        "inferenceArgs": {
+            "predictionSteps": [
+                1
+            ],
+            "predictedField": "value"
+        },
+        "iterationCount": -1,
+        "swarmSize": "medium"
+    }
