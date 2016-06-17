@@ -2,6 +2,9 @@ import json
 import csv
 from datetime import datetime
 
+MAX = 0.0
+MIN = 0.0
+
 
 def convert_json_to_csv(json_path, csv_path='test.csv'):
     # open input json file
@@ -20,6 +23,7 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
     csvwriter = csv.writer(result)
 
     count = 0
+    global MAX, MIN
 
     for dp in datapoints:
         if count == 0:
@@ -36,15 +40,19 @@ def convert_json_to_csv(json_path, csv_path='test.csv'):
             if dp[0] is None:
                 continue
             else:
+                if MAX <= float(dp[0]):
+                    MAX = float(dp[0])
+                if MIN > float(dp[0]):
+                    MIN = float(dp[0])
                 tmp = [dp[0], datetime.fromtimestamp(
                     int(dp[1])).strftime('%Y-%m-%d %H:%M:%S')]
                 csvwriter.writerow(tmp)
                 del tmp
 
-    print "Convert {} to {}" .format(json_path, csv_path)
+    print "Convert {} to {}. Max Value = {} and Min Value = {}" \
+        . format(json_path, csv_path, MAX, MIN)
 
     result.close()
-
 
 if __name__ == '__main__':
     convert_json_to_csv('test.json')

@@ -1,3 +1,5 @@
+import convert
+
 SWARM_DESCRIPTION = {
     "includedFields": [
         {
@@ -7,8 +9,8 @@ SWARM_DESCRIPTION = {
         {
             "fieldName": "value",
             "fieldType": "float",
-            "maxValue": 0.5,
-            "minValue": 0.0
+            "maxValue": convert.MAX,
+            "minValue": convert.MIN
         }
     ],
     "streamDef": {
