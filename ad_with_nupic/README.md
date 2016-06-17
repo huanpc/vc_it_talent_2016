@@ -10,6 +10,7 @@
 > update user set password=null where User='root' and Host='localhost';
 > flush privileges;
 ```
+
 3. Test DB connection: `python $NUPIC/examples/swarm/test_db.py`
 
 # Run
