@@ -16,7 +16,7 @@ MODEL_PARAMS = \
                      'clParams': {'alpha': 0.07502500000000001,
                                   'regionName': 'CLAClassifierRegion',
                                   'steps': '1',
-                                  'verbosity': 0},
+                                  'clVerbosity': 0},
                      'inferenceType': 'TemporalAnomaly',
                      'sensorParams': {'encoders': {u'timestamp_dayOfWeek': None,
                                                    u'timestamp_timeOfDay': {'fieldname': 'timestamp',
